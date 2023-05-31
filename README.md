@@ -9,7 +9,7 @@ source venv/bin/activate
 Aixó crearà i activarà l’entron virtual (si ja està creat només utilitzar la segona línia).
 Posteriorment instalem les depencencies:
 ```
-pip3 install -r requirements.txt
+pip3 install pandas
 ```
 Finalment podem activar el programa amb:
 ```
