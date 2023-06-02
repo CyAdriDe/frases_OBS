@@ -3,21 +3,22 @@ import time
 import csv
 
 def read_sheet():
-	SHEET_ID = '1F7Q3YZZ8vzKq5ifFmp04NrrXKJDMzTDrXNmp-WcVsQ4'
-	SHEET_NAME = 'Sheet1'
+	SHEET_ID = '1R20ADzvvkU7lHqtCAURIQUq4uDXQ_3ZpPkhPIIRhIkw'
+	SHEET_NAME = 'Form1'
 	url = f'https://docs.google.com/spreadsheets/d/{SHEET_ID}/gviz/tq?tqx=out:csv&sheet={SHEET_NAME}'
 	df = pd.read_csv(url)
 	df.to_csv('llista_sheets.csv', index=False, encoding='utf-8')
 
 def create_list():
-	TEMPS_ESPERA = 8
+	TEMPS_ESPERA = 3 # Temps d'espera entre frases
 	with open('llista_sheets.csv', 'r') as f:
 		frases = []
-		text = f.readline()
-		while text != "":
-			frases.append(text.rstrip())
-			text = f.readline()
+		reader = csv.reader(f, delimiter = ",")
+		for row in reader:
+			frases.append(row[1])
 	frases = frases[::-1]
+	frases.pop() # Eliminem el títol de la columna
+		
 
 	for item in frases:
 		with open('llista.txt', 'w') as fp:
